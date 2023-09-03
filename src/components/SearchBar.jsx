@@ -4,7 +4,9 @@ import "./SearchBar.css";
 
 const SearchBar = () => {
   const [searchInput, setSeachInput] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(null);
+
   const url = "https://pokeapi.co/api/v2/pokemon/";
 
   function pokemon(name, abilities, moves, species, stats, image) {
@@ -17,27 +19,26 @@ const SearchBar = () => {
   }
 
   const fetchData = () => {
-    try {
-      fetch(url + searchInput.toLowerCase())
-        .catch((err) => {
-          console.log(err);
-          throw err;
-        })
-        .then((response) => response.json())
-        .then((json) => {
-          var result = json;
-          console.log(result);
-          let pokemonResult = new pokemon(
-            result.name,
-            result.abilities,
-            result.moves,
-            result.species,
-            result.stats,
-            result.image
-          );
-          setSearchResult(pokemonResult);
-        });
-    } catch (e) {console.log(e)}
+    setSearchTerm(searchInput);
+    setSearchResult(null);
+    fetch(url + searchInput.toLowerCase())
+      .catch(() => {
+        setSearchResult(null);
+      })
+      .then((response) => response.json())
+      .then((json) => {
+        var result = json;
+        console.log(result);
+        let pokemonResult = new pokemon(
+          result.name,
+          result.abilities,
+          result.moves,
+          result.species,
+          result.stats,
+          result.image
+        );
+        setSearchResult(pokemonResult);
+      });
   };
 
   return (
@@ -54,10 +55,10 @@ const SearchBar = () => {
         <button onClick={fetchData}>Search</button>
       </div>
       <div>
-        {searchResult != [] ? (
+        {searchResult != null ? (
           <p> {searchResult.name} was found </p>
         ) : (
-          <p> {searchInput} was not found </p>
+          searchTerm && <p> {searchTerm} was not found </p>
         )}
       </div>
     </>
