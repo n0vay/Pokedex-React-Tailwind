@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
+import {PropTypes} from "prop-types"
 
-const SearchBar = () => {
+const SearchBar = ({searchResult, setSearchResult}) => {
   const [searchInput, setSeachInput] = useState("");
-  const [searchResult, setSearchResult] = useState(null);
   const [searchTerm, setSearchTerm] = useState(null);
 
   const url = "https://pokeapi.co/api/v2/pokemon/";
 
-  function pokemon(name, abilities, moves, species, stats, image) {
+  function pokemon(name, hp, image, height, weight, types, abilities, stats) {
     this.name = name;
-    this.abilities = abilities;
-    this.moves = moves;
-    this.species = species;
-    this.stats = stats;
+    this.hp = hp
     this.image = image;
+    this.height = height;
+    this.weight = weight;
+    this.types = types;
+    this.abilities = abilities;
+    this.stats = stats;
   }
 
   const fetchData = () => {
@@ -31,11 +33,13 @@ const SearchBar = () => {
         console.log(result);
         let pokemonResult = new pokemon(
           result.name,
+          result.stats[0].base_stat,
+          result.sprites.other['official-artwork'].front_default,
+          result.height,
+          result.weight,
+          result.types,
           result.abilities,
-          result.moves,
-          result.species,
-          result.stats,
-          result.image
+          result.stats
         );
         setSearchResult(pokemonResult);
       });
@@ -65,4 +69,8 @@ const SearchBar = () => {
   );
 };
 
+SearchBar.propTypes = {
+  searchResult:PropTypes.any,
+  setSearchResult:PropTypes.any
+}
 export default SearchBar;
