@@ -9,8 +9,9 @@ function App() {
   return (
     <div className="App">
       <div className="search-bar-container">
-        <SearchBar searchResult={searchResult} setSearchResult={setSearchResult}/>
-        {searchResult && <ResultCard result = {searchResult}/>}
+        {/* <SearchBar searchResult={searchResult} setSearchResult={setSearchResult}/>
+        {searchResult && <ResultCard result = {searchResult}/>} */}
+        <ResultCard />
       </div>
     </div>
   );
