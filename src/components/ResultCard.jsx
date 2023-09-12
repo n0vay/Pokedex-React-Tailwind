@@ -25,67 +25,94 @@ const ResultCard = ({ result }) => {
           </div>
         </div> */}
 
-      <div className="w-80 border-2 border-black rounded-md">
+      <div className="w-96 border-2 border-gray-800 border-opacity-70 rounded-md">
         <div className="bg-orange-400 h-40 rounded-b-full">
           <div className="p-2 px-4">
             <div className="flex flex-row justify-end">
               <div className="bg-white rounded-full text-center mt-2 px-3 py-1">
-                HP 45
+                HP {result.hp}
               </div>
             </div>
-            <div className=" h-40 w-40 m-auto">
-            <img src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg'} className="h-30" alt="Tailwind Play" />
+            <div className=" h-60 w-60 m-auto">
+              <img src={result.image} className="h-30" alt="Tailwind Play" />
             </div>
           </div>
         </div>
         <div className="p-2">
-          <div className="text-center font-bold p-4 mt-14 text-2xl">
-            Name of Pokemon
+          <div className="text-center font-bold p-4 mt-24 text-3xl">
+            {result.name}
           </div>
-          <div className="flex flex-wrap gap-2">
-            <div className="bg-orange-400 rounded-full text-center py-2 text-white px-5 mx-auto font-bold text-sm">
-              type
-            </div>
+          <div className="flex flex-wrap justify-center gap-5">
+            {result.types.map((type) => (
+              <div
+                key={type.type.name}
+                className="bg-orange-400 rounded-full text-center border-2 border-gray-600 text-white px-5  font-bold text-sm basis-5/12"
+              >
+                {type.type.name}
+                <div className="text-xxs font-normal bg-gray-600 rounded-t-full px-2">
+                  type
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap justify-center gap-5 mt-4">
+            {result.abilities.map((ability) => (
+              <div
+                key={ability.ability.name}
+                className="bg-orange-400 rounded-full text-center border-2 border-gray-600 text-white px-5  font-bold text-sm basis-5/12"
+              >
+                {ability.ability.name}
+                <div className="text-xxs font-normal bg-gray-600 rounded-t-full px-2">
+                  ability
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="mt-16">
+        <div className="mt-4">
           <div className="flex">
             <div className="flex-grow ">
               <div className="p-2 text-center text-xl">
-                <p className="font-bold">52</p>
-                Attack
+                <p className="font-bold">{result.stats[1].base_stat}</p>
+                {result.stats[1].stat.name}
               </div>
             </div>
             <div className="flex-grow ">
               <div className="p-2 text-center text-xl">
-                <p className="font-bold">52</p>
-                Attack
+                <p className="font-bold">{result.stats[2].base_stat}</p>
+                {result.stats[2].stat.name}
               </div>
             </div>
             <div className="flex-grow ">
               <div className="p-2 text-center text-xl">
-                <p className="font-bold">52</p>
-                Attack
+                <p className="font-bold">{result.height}</p>
+                height
+              </div>
+            </div>
+            <div className="flex-grow ">
+              <div className="p-2 text-center text-xl">
+                <p className="font-bold">{result.weight}</p>
+                weight
               </div>
             </div>
           </div>
           <div className="flex">
-            <div className="flex-grow ">
+            <div className="flex-grow">
               <div className="p-2 text-center text-xl">
-                <p className="font-bold">52</p>
-                Attack
+                <p className="font-bold">{result.stats[3].base_stat}</p>
+                {result.stats[3].stat.name}
               </div>
             </div>
-            <div className="flex-grow ">
+            <div className="flex-grow">
               <div className="p-2 text-center text-xl">
-                <p className="font-bold">52</p>
-                Attack
+                <p className="font-bold">{result.stats[4].base_stat}</p>
+                {result.stats[4].stat.name}
               </div>
             </div>
-            <div className="flex-grow ">
+            <div className="flex-grow">
               <div className="p-2 text-center text-xl">
-                <p className="font-bold">52</p>
-                Attack
+                <p className="font-bold">{result.stats[5].base_stat}</p>
+                {result.stats[5].stat.name}
               </div>
             </div>
           </div>
