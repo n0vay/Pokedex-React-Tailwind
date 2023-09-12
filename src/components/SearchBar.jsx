@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
-import {PropTypes} from "prop-types"
+import { PropTypes } from "prop-types";
 
-const SearchBar = ({searchResult, setSearchResult}) => {
+const SearchBar = ({ searchResult, setSearchResult }) => {
   const [searchInput, setSeachInput] = useState("");
   const [searchTerm, setSearchTerm] = useState(null);
 
@@ -11,7 +11,7 @@ const SearchBar = ({searchResult, setSearchResult}) => {
 
   function pokemon(name, hp, image, height, weight, types, abilities, stats) {
     this.name = name;
-    this.hp = hp
+    this.hp = hp;
     this.image = image;
     this.height = height;
     this.weight = weight;
@@ -34,7 +34,7 @@ const SearchBar = ({searchResult, setSearchResult}) => {
         let pokemonResult = new pokemon(
           result.name,
           result.stats[0].base_stat,
-          result.sprites.other['official-artwork'].front_default,
+          result.sprites.other["official-artwork"].front_default,
           result.height,
           result.weight,
           result.types,
@@ -50,6 +50,7 @@ const SearchBar = ({searchResult, setSearchResult}) => {
       <div className="input-wrapper">
         <FaSearch id="search-icon" />
         <input
+          className="px-2"
           id="input-text"
           placeholder="Type to search..."
           onChange={(e) => {
@@ -58,9 +59,9 @@ const SearchBar = ({searchResult, setSearchResult}) => {
         />
         <button onClick={fetchData}>Search</button>
       </div>
-      <div>
+      <div className="p-10">
         {searchResult != null ? (
-          <p> {searchResult.name} was found </p>
+          <p> {searchResult.name} was found in Pokedex</p>
         ) : (
           searchTerm && <p> {searchTerm} was not found </p>
         )}
@@ -70,7 +71,7 @@ const SearchBar = ({searchResult, setSearchResult}) => {
 };
 
 SearchBar.propTypes = {
-  searchResult:PropTypes.any,
-  setSearchResult:PropTypes.any
-}
+  searchResult: PropTypes.any,
+  setSearchResult: PropTypes.any,
+};
 export default SearchBar;
