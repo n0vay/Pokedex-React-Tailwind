@@ -1,6 +1,6 @@
 .App {
   background-color: #eee;
-
+  min-height: 100vh;
 }
 
 .search-bar-container {
