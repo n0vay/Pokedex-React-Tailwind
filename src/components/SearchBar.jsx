@@ -19,7 +19,7 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
     this.abilities = abilities;
     this.stats = stats;
   }
-
+ // Function to fetch Data
   const fetchData = () => {
     setSearchTerm(searchInput);
     setSearchResult(null);
