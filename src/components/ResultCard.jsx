@@ -34,6 +34,7 @@ const ResultCard = ({ result }) => {
               </div>
             </div>
             <div className=" h-60 w-60 m-auto">
+              {JSON.stringify(result)}
               <img src={result.image} className="h-30" alt="Tailwind Play" />
             </div>
           </div>

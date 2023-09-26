@@ -1,18 +1,13 @@
 import "./App.css";
-import ResultCard from "./components/ResultCard";
-import SearchBar from "./components/SearchBar";
-import { useState } from "react";
-
+import DiscoverPage from "./pages/DiscoverPage";
+import DiscoverPage2 from "./pages/DiscoverPage2";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
-  const [searchResult, setSearchResult] = useState(null);
   return (
     <div className="App">
-      <div className="search-bar-container">
-        <SearchBar searchResult={searchResult} setSearchResult={setSearchResult}/>
-        {searchResult && <ResultCard result = {searchResult}/>}
-        {/* <ResultCard /> */}
-      </div>
+      {/* <SearchPage /> */}
+      <DiscoverPage />
     </div>
   );
 }
