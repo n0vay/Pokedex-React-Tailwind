@@ -5,8 +5,8 @@ const DiscoverPage = () => {
   const [pokeList, setPokeList] = useState([]);
   function pokemon(name, hp, image, height, weight, types, abilities, stats) {
     this.name = name;
-    this.hp = hp[0].base_stat;
-    this.image = image.sprites.other["official-artwork"].front_default;
+    this.hp = hp;
+    this.image = image;
     this.height = height;
     this.weight = weight;
     this.types = types;
@@ -15,17 +15,28 @@ const DiscoverPage = () => {
   }
 
   const fetchdatanew = () => {
-    const url1 = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
+    const url1 = "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0";
     return fetch(url1)
       .catch()
       .then((response) => response.json())
       .then((json) => {
         var result = json.results;
-        //console.log(result);
         return result.map((poke) =>
           fetch("https://pokeapi.co/api/v2/pokemon/" + poke.name)
-            .catch()
             .then((response) => response.json())
+            .then((result) => {
+              let pokemonResult = new pokemon(
+                result.name,
+                result.stats[0].base_stat,
+                result.sprites.other["official-artwork"].front_default,
+                result.height,
+                result.weight,
+                result.types,
+                result.abilities,
+                result.stats
+              );
+              return pokemonResult;
+            })
         );
       });
   };
@@ -35,16 +46,16 @@ const DiscoverPage = () => {
       <div
         onClick={() => {
           fetchdatanew().then((x) =>
-            Promise.all(x).then((response) => setPokeList(response))
+            Promise.all(x).then((response) => {
+              setPokeList(response);
+            })
           );
         }}
       >
         Start
       </div>
-      {/* {Promise.all(fetchdatanew()).then((responses) =>
-          console.log(responses)
-        )} */}
-      <div>
+      <div class="grid gap-5 p-10 lg:grid-cols-6 md:grid-cols-2">
+        {/* <div class="flex flex-row flex-wrap p-5"> */}
         {pokeList.map((poke) => (
           <ResultCard key={poke.name} result={poke} />
         ))}
