@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ResultCard from "../components/ResultCard";
 
-const DiscoverPage = () => {
+const PaginationPage = () => {
   const [pokeList, setPokeList] = useState([]);
+  const [offset, setOffset] = useState(0);
   let loading = false;
-  let off = 0;
 
   function pokemon(name, hp, image, height, weight, types, abilities, stats) {
     this.name = name;
@@ -19,7 +19,7 @@ const DiscoverPage = () => {
 
   const fetchPokemonData = async () => {
     loading = true;
-    const url = `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${off}`;
+    const url = `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset}`;
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -40,11 +40,10 @@ const DiscoverPage = () => {
       });
 
       const newPokemonData = await Promise.all(pokemonDataPromises);
-      off = off + 10;
-      console.log(off);
-      if (off > 10) {
-        setPokeList((prevPokeList) => [...prevPokeList, ...newPokemonData]);
-      }
+      setOffset(offset + 10);
+      console.log(offset);
+
+      setPokeList((prevPokeList) => [...prevPokeList, ...newPokemonData]);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -52,39 +51,23 @@ const DiscoverPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchPokemonData();
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 100
-      ) {
-        if (!loading) {
-          fetchPokemonData();
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [loading]);
-
   return (
     <>
-      <div className="grid gap-5 p-10 lg:grid-cols-6 md:grid-cols-2">
-        {pokeList.map((poke, index) => (
-          <ResultCard key={index} result={poke} />
-        ))}
-        {loading && <p>Loading...</p>}
+      <div>
+        <p>Hi</p>
+        <div className="flex flex-row flex-wrap p-5">
+          {/* <div className="grid gap-5 p-10 lg:grid-cols-6 md:grid-cols-2"> */}
+          {pokeList.map((poke, index) => (
+            <div className="p-3">
+              <ResultCard key={index} result={poke} />
+            </div>
+          ))}
+          {loading && <p>Loading...</p>}
+        </div>
+        <button onClick={fetchPokemonData}>Fetch Pokemon</button>
       </div>
     </>
   );
 };
 
-//  {/* <div class="flex flex-row flex-wrap p-5"> */}
-export default DiscoverPage;
+export default PaginationPage;
