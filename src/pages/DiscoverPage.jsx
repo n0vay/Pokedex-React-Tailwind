@@ -6,8 +6,19 @@ const DiscoverPage = () => {
   let loading = false;
   let off = 0;
 
-  function pokemon(name, hp, image, height, weight, types, abilities, stats) {
+  function pokemon(
+    name,
+    id,
+    hp,
+    image,
+    height,
+    weight,
+    types,
+    abilities,
+    stats
+  ) {
     this.name = name;
+    this.id = id;
     this.hp = hp;
     this.image = image;
     this.height = height;
@@ -23,12 +34,13 @@ const DiscoverPage = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data.results);
+      
       const pokemonDataPromises = data.results.map(async (poke) => {
         const pokemonResponse = await fetch(poke.url);
         const pokemonResult = await pokemonResponse.json();
         return new pokemon(
           pokemonResult.name,
+          pokemonResult.id,
           pokemonResult.stats[0].base_stat,
           pokemonResult.sprites.other["official-artwork"].front_default,
           pokemonResult.height,
@@ -41,7 +53,7 @@ const DiscoverPage = () => {
 
       const newPokemonData = await Promise.all(pokemonDataPromises);
       off = off + 10;
-      console.log(off);
+      
       if (off > 10) {
         setPokeList((prevPokeList) => [...prevPokeList, ...newPokemonData]);
       }

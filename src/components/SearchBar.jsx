@@ -9,8 +9,19 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
 
   const url = "https://pokeapi.co/api/v2/pokemon/";
 
-  function pokemon(name, hp, image, height, weight, types, abilities, stats) {
+  function pokemon(
+    name,
+    id,
+    hp,
+    image,
+    height,
+    weight,
+    types,
+    abilities,
+    stats
+  ) {
     this.name = name;
+    this.id = id;
     this.hp = hp;
     this.image = image;
     this.height = height;
@@ -19,7 +30,7 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
     this.abilities = abilities;
     this.stats = stats;
   }
- // Function to fetch Data
+  // Function to fetch Data
   const fetchData = () => {
     setSearchTerm(searchInput);
     setSearchResult(null);
@@ -30,9 +41,10 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
       .then((response) => response.json())
       .then((json) => {
         var result = json;
-        console.log(result);
+        
         let pokemonResult = new pokemon(
           result.name,
+          result.id,
           result.stats[0].base_stat,
           result.sprites.other["official-artwork"].front_default,
           result.height,
