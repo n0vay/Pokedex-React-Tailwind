@@ -4,7 +4,7 @@ import DiscoverPage from "./pages/DiscoverPage";
 import PaginationPage from "./pages/Pagination";
 import SearchPage from "./pages/SearchPage";
 import RootLayout from "./Layouts/RootLayout";
-import PokemonDetails, { pokemonDetailsLoader } from "./pages/PokemonDatails";
+import PokemonDetails, { pokemonDetailsLoader } from "./pages/PokemonDetails";
 
 
 import {
