@@ -34,7 +34,7 @@ const PaginationPage = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      
+
       const pokemonDataPromises = data.results.map(async (poke) => {
         const pokemonResponse = await fetch(poke.url);
         const pokemonResult = await pokemonResponse.json();
@@ -53,7 +53,6 @@ const PaginationPage = () => {
 
       const newPokemonData = await Promise.all(pokemonDataPromises);
       setOffset(offset + 10);
-      
 
       setPokeList((prevPokeList) => [...prevPokeList, ...newPokemonData]);
     } catch (error) {
@@ -70,7 +69,8 @@ const PaginationPage = () => {
         <div className="flex flex-row flex-wrap p-5">
           {/* <div className="grid gap-5 p-10 lg:grid-cols-6 md:grid-cols-2"> */}
           {pokeList.map((poke, index) => (
-            <div className="p-3">
+            // <div className="p-3">
+            <div className="grid gap-5 p-10 lg:grid-cols-6 md:grid-cols-2">
               <ResultCard key={index} result={poke} />
             </div>
           ))}

@@ -1,8 +1,10 @@
 import { useLoaderData } from "react-router-dom";
+import RotatingSprite from "./Sprite";
 
 const PokemonDetails = () => {
   const data = useLoaderData();
-  console.log(data);
+
+  //const sprites = [data.sprites.front_default, data.sprites.back_default];
 
   return (
     <div className="p-5">
@@ -47,8 +49,8 @@ const PokemonDetails = () => {
         <div>
           <div className="border-2 bg-gray-800 p-5 ml-10 border-gray-800 rounded-sm shadow-[-10px_10px_0px_0px_rgba(160,174,192)]">
             <div className="font-bold text-xl mb-4 text-white">Stats</div>
-            {data.stats.map((stat) => (
-              <div className="flex">
+            {data.stats.map((stat, index) => (
+              <div className="flex" key={index}>
                 <div className="text-lg text-white">
                   {stat.stat.name.charAt(0).toUpperCase() +
                     stat.stat.name.slice(1)}{" "}
@@ -58,7 +60,30 @@ const PokemonDetails = () => {
               </div>
             ))}
           </div>
+          
         </div>
+        <div>
+          <div className="border-2 bg-gray-800 p-5 ml-10 border-gray-800 rounded-sm shadow-[-10px_10px_0px_0px_rgba(160,174,192)]">
+            <div className="font-bold text-xl mb-4 text-white ">Physical</div>
+            <div className="flex">
+              <div className="text-lg text-white">XP : </div>
+              <div className="text-lg text-white">{data.base_experience}</div>
+            </div>
+            <div className="flex">
+              <div className="text-lg text-white">Height : </div>
+              <div className="text-lg text-white">{data.height}</div>
+            </div>
+            <div className="flex">
+              <div className="text-lg text-white">Weight : </div>
+              <div className="text-lg text-white">{data.weight}</div>
+            </div>
+            <div className="flex">
+              <div className="text-lg text-white">Order : </div>
+              <div className="text-lg text-white">{data.order}</div>
+            </div>
+          </div>
+        </div>
+        <RotatingSprite />
       </div>
     </div>
   );
