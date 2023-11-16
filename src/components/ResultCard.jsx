@@ -2,11 +2,10 @@ import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 
 const ResultCard = ({ result }) => {
-  
   return (
     <>
       <Link to={`/${result.id}`}>
-        <div className="w-96 border-2 border-gray-800 border-opacity-70 rounded-md">
+        <div className="w-96 border-2 border-gray-800 border-opacity-70 rounded-md bg-gray-200">
           <div className="bg-orange-400 h-40 rounded-b-full">
             <div className="p-2 px-4">
               <div className="flex flex-row justify-end">

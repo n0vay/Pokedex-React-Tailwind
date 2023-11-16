@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import RotatingSprite from "./Sprite";
+import RotatingSprite from "../components/Sprite";
 
 const PokemonDetails = () => {
   const data = useLoaderData();

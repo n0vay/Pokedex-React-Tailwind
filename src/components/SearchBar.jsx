@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { PropTypes } from "prop-types";
-import "./SearchBar.css";
 
 const SearchBar = ({ searchResult, setSearchResult }) => {
   const [searchInput, setSeachInput] = useState("");
@@ -41,7 +40,7 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
       .then((response) => response.json())
       .then((json) => {
         var result = json;
-        
+
         let pokemonResult = new pokemon(
           result.name,
           result.id,
@@ -59,18 +58,28 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
 
   return (
     <>
-      <div className="input-wrapper">
-        <FaSearch id="search-icon" />
-        <input
-          className="px-2"
-          id="input-text"
-          placeholder="Type to search..."
-          onChange={(e) => {
-            setSeachInput(e.target.value);
-          }}
-        />
-        <button onClick={fetchData}>Search</button>
+      <div className="px-2 py-3 bg-white flex shadow-2xl border-2 border-gray-600 rounded-lg justify-between focus:ring-blue-500">
+        <div className="">
+          <FaSearch className="py-2 ml-2 h-8 w-8" id="search-icon" />
+        </div>
+        <div>
+          <input
+            className="px-2 align-middle focus:ring-blue-500"
+            id="input-text"
+            placeholder="Type to search..."
+            onChange={(e) => {
+              setSeachInput(e.target.value);
+            }}
+          />
+        </div>
+        <button
+          className="Text-white bg-orange-400 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2"
+          onClick={fetchData}
+        >
+          Search
+        </button>
       </div>
+
       <div className="p-10">
         {searchResult != null ? (
           <p> {searchResult.name} was found in Pokedex</p>
