@@ -22,7 +22,9 @@ const router = createBrowserRouter(
       <Route path="search" element={<SearchPage />} />
       <Route path="pagination" element={<PaginationPage />} />
       <Route path="discover" element={<DiscoverPageMain />}>
+        <Route index element={<DiscoverPage />} />
         <Route path="search" element={<SearchPage />} />
+        <Route path="pagination" element={<PaginationPage />} />
       </Route>
       <Route
         path=":id"

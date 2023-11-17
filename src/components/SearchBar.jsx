@@ -57,12 +57,13 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
 
   return (
     <>
-      <div className=" flex ">
+      <div className="flex">
         <div>
           <input
-            className=" outline-none p-4 text-xl text-gray-900  rounded-l-xl bg-gray-50 focus:bg-gray-100 focus:ring-2 ring-inset focus:ring-gray-800 "
+            className=" outline-none p-4 text-xl text-gray-900  rounded-l-xl bg-gray-50 focus:bg-gray-100 focus:ring-2 ring-inset focus:ring-blue-600 "
             id="input-text"
             placeholder="Enter Pokemon Name"
+            required
             onChange={(e) => {
               setSeachInput(e.target.value);
             }}
@@ -70,7 +71,11 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
         </div>
         <button
           className=" text-xl border-2 border-gray-800 bg-orange-400 hover:bg-orange-600  font-medium rounded-r-xl px-4 py-2 "
-          onClick={fetchData}
+          onClick={() => {
+            if (searchInput !== "") {
+              fetchData();
+            }
+          }}
         >
           Search
         </button>
@@ -78,9 +83,17 @@ const SearchBar = ({ searchResult, setSearchResult }) => {
 
       <div className="p-10">
         {searchResult != null ? (
-          <p> {searchResult.name} was found in Pokedex</p>
+          <p className="text-2xl font-bold text-white">
+            {" "}
+            {searchResult.name} was found in Pokedex
+          </p>
         ) : (
-          searchTerm && <p> {searchTerm} was not found </p>
+          searchTerm && (
+            <p className="text-2xl font-bold text-white">
+              {" "}
+              {searchTerm} was not found{" "}
+            </p>
+          )
         )}
       </div>
     </>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ResultCard from "../components/ResultCard";
+import backgroundImage from "../assets/images/background3.png";
 
 const DiscoverPage = () => {
   const [pokeList, setPokeList] = useState([]);
@@ -34,7 +35,7 @@ const DiscoverPage = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      
+
       const pokemonDataPromises = data.results.map(async (poke) => {
         const pokemonResponse = await fetch(poke.url);
         const pokemonResult = await pokemonResponse.json();
@@ -53,7 +54,7 @@ const DiscoverPage = () => {
 
       const newPokemonData = await Promise.all(pokemonDataPromises);
       off = off + 10;
-      
+
       if (off > 10) {
         setPokeList((prevPokeList) => [...prevPokeList, ...newPokemonData]);
       }
@@ -88,7 +89,16 @@ const DiscoverPage = () => {
 
   return (
     <>
-      <div className="grid gap-5 p-10 lg:grid-cols-6 md:grid-cols-2">
+      {/* <div className="grid gap-5 p-10 lg:grid-cols-6 md:grid-cols-2"> */}
+
+      <div
+        className=" flex flex-row flex-wrap pt-5 gap-8 justify-center bg-scroll"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          //backgroundattachment: "fixed",
+          backgroundposition: "center",
+        }}
+      >
         {pokeList.map((poke, index) => (
           <ResultCard key={index} result={poke} />
         ))}

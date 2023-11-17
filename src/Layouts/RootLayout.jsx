@@ -11,24 +11,9 @@ const RootLayout = () => {
                 <img src={logo} className="h-12" alt="pokemon logo" />
               </div>
               <div className="flex  p-3">
-                <NavLink to="/" className="px-2">
-                  <div className="bg-gray-700 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
-                    Discover
-                  </div>
-                </NavLink>
-                <NavLink to="/search" className="px-2">
-                  <div className="bg-gray-700 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
-                    Search
-                  </div>
-                </NavLink>
-                <NavLink to="/pagination" className="px-2">
-                  <div className="bg-gray-700 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
-                    Pagination
-                  </div>
-                </NavLink>
                 <NavLink to="/discover" className="px-2">
                   <div className="bg-gray-700 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
-                    Filter
+                    Discover Pokemon
                   </div>
                 </NavLink>
               </div>
@@ -52,7 +37,9 @@ const RootLayout = () => {
         <div className="bg-gray-700 h-2" />
       </header>
       <main>
-        <Outlet />
+        <div className="pt-20 pl-64 ">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
