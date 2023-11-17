@@ -14,11 +14,12 @@ import {
 } from "react-router-dom";
 
 import DiscoverPageMain from "./pages/DiscoverPageMain";
+import Hero from "./pages/Hero";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<DiscoverPage />} />
+      <Route index element={<Hero />} />
       <Route path="search" element={<SearchPage />} />
       <Route path="pagination" element={<PaginationPage />} />
       <Route path="discover" element={<DiscoverPageMain />}>

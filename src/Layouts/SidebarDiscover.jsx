@@ -22,7 +22,7 @@ const SideBarDiscover = () => {
         </div>
       </div>
       <main>
-        <div className="">
+        <div className="pl-64">
           <Outlet />
         </div>
       </main>
