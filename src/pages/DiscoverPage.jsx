@@ -65,9 +65,8 @@ const DiscoverPage = () => {
             }
         } catch (error) {
             console.error("Error fetching data:", error);
-        } finally {
-            loading = false;
         }
+        loading = false;
     };
 
     useEffect(() => {
