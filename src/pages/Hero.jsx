@@ -21,9 +21,9 @@ const Hero = () => {
       }}
     >
       <div className="flex flex-col items-center justify-center h-screen">
-        <div className="flex flex-col items-center justify-center text-gray-200 border-gray-300 border-8 p-4 rounded-2xl shadow-2xl">
-          <h1 className="text-9xl font-black">Welcome to Pokédex</h1>
-          <h2 className="mt-4 text-7xl ">
+        <div className="flex flex-col items-center justify-center text-gray-200 border-gray-300 border-8 p-4 rounded-2xl shadow-2xl bg-black/30 backdrop-opacity-20">
+          <h1 className="text-9xl font-black ">Welcome to Pokédex</h1>
+          <h2 className="mt-4 text-7xl font-sans">
             the most comprehensive Pokémon database
           </h2>
         </div>
