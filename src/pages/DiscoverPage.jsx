@@ -114,4 +114,5 @@ const DiscoverPage = () => {
 };
 
 //  {/* <div class="flex flex-row flex-wrap p-5"> */}
+//  {/* <div class="flex flex-row flex-wrap p-5"> */}
 export default DiscoverPage;
