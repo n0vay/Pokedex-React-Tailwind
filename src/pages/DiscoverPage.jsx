@@ -57,7 +57,7 @@ const DiscoverPage = () => {
             const newPokemonData = await Promise.all(pokemonDataPromises);
             off = off + 10;
 
-            if (off > 10) {
+            if (off >= 10) {
                 setPokeList((prevPokeList) => [
                     ...prevPokeList,
                     ...newPokemonData,
@@ -65,12 +65,12 @@ const DiscoverPage = () => {
             }
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            loading = false;
         }
-        loading = false;
     };
 
     useEffect(() => {
-        alert("fetching");
         fetchPokemonData();
     });
 
