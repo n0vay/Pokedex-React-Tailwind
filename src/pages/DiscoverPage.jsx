@@ -29,7 +29,7 @@ const DiscoverPage = () => {
         this.stats = stats;
     }
 
-    const fetchPokemonData = async () => {
+    const fetchPokemonData = async (init = false) => {
         loading = true;
         const url = `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${off}`;
         try {
@@ -57,7 +57,7 @@ const DiscoverPage = () => {
             const newPokemonData = await Promise.all(pokemonDataPromises);
             off = off + 10;
 
-            if (off >= 10) {
+            if (off > 10 || init) {
                 setPokeList((prevPokeList) => [
                     ...prevPokeList,
                     ...newPokemonData,
@@ -71,8 +71,8 @@ const DiscoverPage = () => {
     };
 
     useEffect(() => {
-        fetchPokemonData();
-    });
+        fetchPokemonData(true);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
