@@ -21,7 +21,7 @@ const ResultCard = ({ result }) => {
           </div>
           <div className="p-2">
             <div className="text-center font-bold p-4 mt-24 text-3xl">
-              {result.name}
+              {result.name.charAt(0).toUpperCase() + result.name.slice(1)}
             </div>
             <div className="flex flex-wrap justify-center gap-5">
               {result.types.map((type) => (
