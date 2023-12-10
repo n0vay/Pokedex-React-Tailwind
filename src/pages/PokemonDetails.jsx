@@ -5,7 +5,7 @@ import pokeball from "../assets/images/pokeball.png";
 
 const PokemonDetails = () => {
   const data = useLoaderData();
-  
+
   const type = data.types[0].type.name;
   let bgcolor = "bg-gray-200";
   let border = "border-gray-200";
@@ -132,9 +132,9 @@ const PokemonDetails = () => {
         >
           Pokédex Data
         </div>
-        <div className="flex mt-6">
+        <div className="flex mt-6 ">
           <div className="basis-1/3">
-            <div className="flex justify-end gap-3 pr-10 pl-5">
+            <div className="flex justify-center gap-3">
               <div
                 className="w-24"
                 style={{
@@ -147,44 +147,62 @@ const PokemonDetails = () => {
               </div>
             </div>
             <div className="flex justify-center mt-7">
-              <div className="font-bold flex flex-col justify-start text-xl w-100 rounded-md border-2 px-2 py-1 mb-2">
+              <div
+                className={`${border} font-bold flex flex-col justify-start text-xl rounded-md border-4 px-8 py-2 mb-2`}
+              >
                 Type
                 {data.types.map((type) => (
                   <div
                     key={type.type.name}
-                    className="flex rounded-md text-center text-gray-700 px-2 font-bold text-3xl"
+                    className={`${bgcolor} flex rounded-md text-center text-white px-6 py-1 font-bold text-3xl mt-2`}
                   >
-                    {type.type.name}
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex justify-center">
-              <div className="font-bold flex flex-col justify-start text-xl rounded-md border-2 px-2 py-1 mb-2 ">
+              <div
+                className={`${border} font-bold flex flex-col justify-start text-xl rounded-md border-4 px-8 py-2 mb-2`}
+              >
                 Ability
                 {data.abilities.map((ability) => (
                   <div
                     key={ability.ability.name}
-                    className="flex rounded-md text-center text-gray-700 px-2 font-bold text-3xl"
+                    className={`${bgcolor} flex rounded-md text-center text-white px-6 py-1 font-bold text-3xl mt-2`}
                   >
-                    {ability.ability.name}
+                    {ability.ability.name.charAt(0).toUpperCase() +
+                      ability.ability.name.slice(1)}
                   </div>
                 ))}
               </div>
             </div>
             <div>
               <div className="flex justify-center">
-                <div className="flex flex-col font-bold text-xl rounded-md border-2 px-2 py-1 mb-2 ">
-                  Physical
-                  <div className=" rounded-md text-center text-gray-700 px-2 font-bold text-3xl">
-                    <div className="flex flex-row">
-                      XP :{data.base_experience}
-                    </div>
-                    <div className="flex flex-row">Height :{data.height}</div>
-                    <div className="flex flex-row">Weight :{data.weight}</div>
-                    <div className="flex flex-row">Order :{data.order}</div>
-                  </div>
-                </div>
+                <table
+                  class={`table-auto ${border} font-bold flex flex-col text-xl rounded-md border-4 px-8 py-2 mb-2`}
+                >
+                  <thead>
+                    <tr>
+                      <th>Physical</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-700 px-2 font-bold text-3xl">
+                    <tr>
+                      <td>XP :</td>
+                      <td>{data.base_experience}</td>
+                    </tr>
+                    <tr>
+                      <td>Height :</td>
+                      <td>{data.height}</td>
+                    </tr>
+                    <tr>
+                      <td>Order :</td>
+                      <td>{data.order}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -210,23 +228,28 @@ const PokemonDetails = () => {
             </div>
           </div>
           <div className="basis-1/3">
-            <div className="flex justify-center flex-col mt-7">
-              <div className="font-bold flex flex-col justify-start text-xl w-100 rounded-md border-2 px-2 py-1 mb-2">
-                Stats
-              </div>
-              {data.stats.map((stat, index) => (
-                <div
-                  className=" flex flex-row rounded-md text-center text-gray-700 px-2 font-bold text-3xl"
-                  key={index}
-                >
-                  {stat.stat.name.charAt(0).toUpperCase() +
-                    stat.stat.name.slice(1)}{" "}
-                  :
-                  <div className="rounded-md text-center text-gray-700 px-2 font-bold text-3xl">
-                    {stat.base_stat}
-                  </div>
-                </div>
-              ))}
+            <div className="flex justify-center mt-7">
+              <table
+                class={`table-auto ${border} font-bold flex flex-col text-xl rounded-md border-4 px-8 py-2 mb-2`}
+              >
+                <thead>
+                  <tr>
+                    <th>Stats</th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-700 px-2 font-bold text-3xl">
+                  {data.stats.map((stat, index) => (
+                    <tr key={index}>
+                      <td>
+                        {stat.stat.name.charAt(0).toUpperCase() +
+                          stat.stat.name.slice(1)}{" "}
+                        :
+                      </td>
+                      <td>{stat.base_stat}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
