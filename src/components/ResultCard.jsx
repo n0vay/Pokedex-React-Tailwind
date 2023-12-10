@@ -2,11 +2,114 @@ import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 
 const ResultCard = ({ result }) => {
+
+  const type = result.types[0].type.name;
+  let bgcolor = "bg-gray-200";
+  let border = "border-gray-200";
+  let fromcolor = "from-gray-200";
+  switch (type) {
+    case "grass":
+      bgcolor = "bg-grass";
+      border = "border-grass";
+      fromcolor = "from-grass";
+      break;
+    case "fire":
+      bgcolor = "bg-fire";
+      border = "border-fire";
+      fromcolor = "from-fire";
+      break;
+    case "water":
+      bgcolor = "bg-water";
+      border = "border-water";
+      fromcolor = "from-water";
+      break;
+    case "bug":
+      bgcolor = "bg-bug";
+      border = "border-bug";
+      fromcolor = "from-bug";
+      break;
+    case "normal":
+      bgcolor = "bg-normal";
+      border = "border-normal";
+      fromcolor = "from-normal";
+      break;
+    case "poison":
+      bgcolor = "bg-poison";
+      border = "border-poison";
+      fromcolor = "from-poison";
+      break;
+    case "electric":
+      bgcolor = "bg-electric";
+      border = "border-electric";
+      fromcolor = "from-electric";
+      break;
+    case "ground":
+      bgcolor = "bg-ground";
+      border = "border-ground";
+      fromcolor = "from-ground";
+      break;
+    case "fairy":
+      bgcolor = "bg-fairy";
+      border = "border-fairy";
+      fromcolor = "from-fairy";
+      break;
+    case "fighting":
+      bgcolor = "bg-fighting";
+      border = "border-fighting";
+      fromcolor = "from-fighting";
+      break;
+    case "psychic":
+      bgcolor = "bg-psychic";
+      border = "border-psychic";
+      fromcolor = "from-psychic";
+      break;
+    case "rock":
+      bgcolor = "bg-rock";
+      border = "border-rock";
+      fromcolor = "from-rock";
+      break;
+    case "ghost":
+      bgcolor = "bg-ghost";
+      border = "border-ghost";
+      fromcolor = "from-ghost";
+      break;
+    case "ice":
+      bgcolor = "bg-ice";
+      border = "border-ice";
+      fromcolor = "from-ice";
+      break;
+    case "dragon":
+      bgcolor = "bg-dragon";
+      border = "border-dragon";
+      fromcolor = "from-dragon";
+      break;
+    case "dark":
+      bgcolor = "bg-dark";
+      border = "border-dark";
+      fromcolor = "from-dark";
+      break;
+    case "steel":
+      bgcolor = "bg-steel";
+      border = "border-steel";
+      fromcolor = "from-steel";
+      break;
+    case "flying":
+      bgcolor = "bg-flying";
+      border = "border-flying";
+      fromcolor = "from-flying";
+      break;
+    default:
+      bgcolor = "bg-gray-200";
+      border = "border-gray-400";
+      fromcolor = "from-gray-400";
+      break;
+  }
+
   return (
     <>
       <Link to={`/${result.id}`}>
         <div className="w-96 border-2 border-gray-800 border-opacity-70 rounded-md bg-gray-200">
-          <div className="bg-orange-400 h-40 rounded-b-full">
+          <div className={`${bgcolor} h-40 rounded-b-full`}>
             <div className="p-2 px-4">
               <div className="flex flex-row justify-end">
                 <div className="bg-white rounded-full text-center mt-2 px-3 py-1">
@@ -27,7 +130,7 @@ const ResultCard = ({ result }) => {
               {result.types.map((type) => (
                 <div
                   key={type.type.name}
-                  className="bg-orange-400 rounded-full text-center border-2 border-gray-600 text-white px-5  font-bold text-sm basis-5/12"
+                  className={`${bgcolor} rounded-full text-center border-2 border-gray-600 text-white px-5  font-bold text-sm basis-5/12`}
                 >
                   {type.type.name}
                   <div className="text-xxs font-normal bg-gray-600 rounded-t-full px-2">
@@ -40,7 +143,7 @@ const ResultCard = ({ result }) => {
               {result.abilities.map((ability) => (
                 <div
                   key={ability.ability.name}
-                  className="bg-orange-400 rounded-full text-center border-2 border-gray-600 text-white px-5  font-bold text-sm basis-5/12"
+                  className={`${bgcolor} rounded-full text-center border-2 border-gray-600 text-white px-5  font-bold text-sm basis-5/12`}
                 >
                   {ability.ability.name}
                   <div className="text-xxs font-normal bg-gray-600 rounded-t-full px-2">

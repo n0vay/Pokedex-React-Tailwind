@@ -2,10 +2,111 @@ import { useLoaderData } from "react-router-dom";
 import RotatingSprite from "../components/Sprite";
 import backgroundImage from "../assets/images/details_background.jpg";
 import pokeball from "../assets/images/pokeball.png";
+
 const PokemonDetails = () => {
   const data = useLoaderData();
-
-  //const sprites = [data.sprites.front_default, data.sprites.back_default];
+  
+  const type = data.types[0].type.name;
+  let bgcolor = "bg-gray-200";
+  let border = "border-gray-200";
+  let fromcolor = "from-gray-200";
+  switch (type) {
+    case "grass":
+      bgcolor = "bg-grass";
+      border = "border-grass";
+      fromcolor = "from-grass";
+      break;
+    case "fire":
+      bgcolor = "bg-fire";
+      border = "border-fire";
+      fromcolor = "from-fire";
+      break;
+    case "water":
+      bgcolor = "bg-water";
+      border = "border-water";
+      fromcolor = "from-water";
+      break;
+    case "bug":
+      bgcolor = "bg-bug";
+      border = "border-bug";
+      fromcolor = "from-bug";
+      break;
+    case "normal":
+      bgcolor = "bg-normal";
+      border = "border-normal";
+      fromcolor = "from-normal";
+      break;
+    case "poison":
+      bgcolor = "bg-poison";
+      border = "border-poison";
+      fromcolor = "from-poison";
+      break;
+    case "electric":
+      bgcolor = "bg-electric";
+      border = "border-electric";
+      fromcolor = "from-electric";
+      break;
+    case "ground":
+      bgcolor = "bg-ground";
+      border = "border-ground";
+      fromcolor = "from-ground";
+      break;
+    case "fairy":
+      bgcolor = "bg-fairy";
+      border = "border-fairy";
+      fromcolor = "from-fairy";
+      break;
+    case "fighting":
+      bgcolor = "bg-fighting";
+      border = "border-fighting";
+      fromcolor = "from-fighting";
+      break;
+    case "psychic":
+      bgcolor = "bg-psychic";
+      border = "border-psychic";
+      fromcolor = "from-psychic";
+      break;
+    case "rock":
+      bgcolor = "bg-rock";
+      border = "border-rock";
+      fromcolor = "from-rock";
+      break;
+    case "ghost":
+      bgcolor = "bg-ghost";
+      border = "border-ghost";
+      fromcolor = "from-ghost";
+      break;
+    case "ice":
+      bgcolor = "bg-ice";
+      border = "border-ice";
+      fromcolor = "from-ice";
+      break;
+    case "dragon":
+      bgcolor = "bg-dragon";
+      border = "border-dragon";
+      fromcolor = "from-dragon";
+      break;
+    case "dark":
+      bgcolor = "bg-dark";
+      border = "border-dark";
+      fromcolor = "from-dark";
+      break;
+    case "steel":
+      bgcolor = "bg-steel";
+      border = "border-steel";
+      fromcolor = "from-steel";
+      break;
+    case "flying":
+      bgcolor = "bg-flying";
+      border = "border-flying";
+      fromcolor = "from-flying";
+      break;
+    default:
+      bgcolor = "bg-gray-200";
+      border = "border-gray-400";
+      fromcolor = "from-gray-200";
+      break;
+  }
 
   return (
     <div
@@ -26,13 +127,14 @@ const PokemonDetails = () => {
       }}
     >
       <div className=" bg-gray-200 rounded-md w-2/3">
-        <div className="font-bold text-4xl bg-red-500 px-5 py-2 border-x-2 border-y-4 border-gray-800 rounded-t-md">
+        <div
+          className={`font-bold text-4xl ${bgcolor} px-5 py-2 border-x-2 border-y-4 border-gray-800 rounded-t-md`}
+        >
           Pokédex Data
         </div>
         <div className="flex mt-6">
           <div className="basis-1/3">
             <div className="flex justify-end gap-3 pr-10 pl-5">
-              
               <div
                 className="w-24"
                 style={{
@@ -40,18 +142,17 @@ const PokemonDetails = () => {
                   backgroundSize: "cover",
                 }}
               />
-
               <div className="font-bold text-6xl mt-10 ">
                 {data.name.charAt(0).toUpperCase() + data.name.slice(1)}
               </div>
             </div>
             <div className="flex justify-center mt-7">
-              <div className="flex gap-2 font-bold text-xl bg-gray-800 rounded-md text-center border-2  border-gray-600 text-white px-2 py-1 mb-2">
+              <div className="font-bold flex flex-col justify-start text-xl w-100 rounded-md border-2 px-2 py-1 mb-2">
                 Type
                 {data.types.map((type) => (
                   <div
                     key={type.type.name}
-                    className=" bg-gray-600 rounded-md text-center border-2  border-gray-600 text-white px-2 font-bold text-base"
+                    className="flex rounded-md text-center text-gray-700 px-2 font-bold text-3xl"
                   >
                     {type.type.name}
                   </div>
@@ -59,12 +160,12 @@ const PokemonDetails = () => {
               </div>
             </div>
             <div className="flex justify-center">
-              <div className=" flex gap-2 font-bold text-xl bg-gray-800 rounded-md text-center border-2  border-gray-600 text-white px-2 py-1">
+              <div className="font-bold flex flex-col justify-start text-xl rounded-md border-2 px-2 py-1 mb-2 ">
                 Ability
                 {data.abilities.map((ability) => (
                   <div
                     key={ability.ability.name}
-                    className="bg-gray-600 rounded-md text-center border-2  border-gray-600 text-white px-2 font-bold text-base"
+                    className="flex rounded-md text-center text-gray-700 px-2 font-bold text-3xl"
                   >
                     {ability.ability.name}
                   </div>
@@ -72,37 +173,29 @@ const PokemonDetails = () => {
               </div>
             </div>
             <div>
-              <div className="border-2 bg-gray-800 p-5 ml-10 border-gray-800 rounded-sm shadow-[-10px_10px_0px_0px_rgba(160,174,192)]">
-                <div className="font-bold text-xl mb-4 text-white ">
+              <div className="flex justify-center">
+                <div className="flex flex-col font-bold text-xl rounded-md border-2 px-2 py-1 mb-2 ">
                   Physical
-                </div>
-                <div className="flex">
-                  <div className="text-lg text-white">XP : </div>
-                  <div className="text-lg text-white">
-                    {data.base_experience}
+                  <div className=" rounded-md text-center text-gray-700 px-2 font-bold text-3xl">
+                    <div className="flex flex-row">
+                      XP :{data.base_experience}
+                    </div>
+                    <div className="flex flex-row">Height :{data.height}</div>
+                    <div className="flex flex-row">Weight :{data.weight}</div>
+                    <div className="flex flex-row">Order :{data.order}</div>
                   </div>
-                </div>
-                <div className="flex">
-                  <div className="text-lg text-white">Height : </div>
-                  <div className="text-lg text-white">{data.height}</div>
-                </div>
-                <div className="flex">
-                  <div className="text-lg text-white">Weight : </div>
-                  <div className="text-lg text-white">{data.weight}</div>
-                </div>
-                <div className="flex">
-                  <div className="text-lg text-white">Order : </div>
-                  <div className="text-lg text-white">{data.order}</div>
                 </div>
               </div>
             </div>
           </div>
           <div className="basis-1/3">
-            <div className="border-y-8 border-red-500 rounded-full">
+            <div className={`rounded-full ${border} border-y-8`}>
               <div className="border-8 border-white-200 rounded-full">
-                <div className="border-x-8 border-red-500 rounded-full">
+                <div className={`rounded-full ${border} border-x-8`}>
                   <div className="border-8  border-white-200 rounded-full">
-                    <div className="rounded-full bg-gradient-to-t from-red-300 to-gray-200 bg-gray-300">
+                    <div
+                      className={`rounded-full bg-gradient-to-t ${fromcolor} to-gray-200 bg-gray-300`}
+                    >
                       <img
                         className="scale-125 p-10"
                         src={
@@ -117,16 +210,21 @@ const PokemonDetails = () => {
             </div>
           </div>
           <div className="basis-1/3">
-            <div className="border-2 bg-gray-800 p-5 ml-10 border-gray-800 rounded-sm shadow-[-10px_10px_0px_0px_rgba(160,174,192)]">
-              <div className="font-bold text-xl mb-4 text-white">Stats</div>
+            <div className="flex justify-center flex-col mt-7">
+              <div className="font-bold flex flex-col justify-start text-xl w-100 rounded-md border-2 px-2 py-1 mb-2">
+                Stats
+              </div>
               {data.stats.map((stat, index) => (
-                <div className="flex" key={index}>
-                  <div className="text-lg text-white">
-                    {stat.stat.name.charAt(0).toUpperCase() +
-                      stat.stat.name.slice(1)}{" "}
-                    :
+                <div
+                  className=" flex flex-row rounded-md text-center text-gray-700 px-2 font-bold text-3xl"
+                  key={index}
+                >
+                  {stat.stat.name.charAt(0).toUpperCase() +
+                    stat.stat.name.slice(1)}{" "}
+                  :
+                  <div className="rounded-md text-center text-gray-700 px-2 font-bold text-3xl">
+                    {stat.base_stat}
                   </div>
-                  <div className="text-lg text-white">{stat.base_stat}</div>
                 </div>
               ))}
             </div>

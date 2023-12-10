@@ -4,7 +4,7 @@ const RootLayout = () => {
   return (
     <div className="">
       <header className="fixed w-screen">
-        <div className=" bg-red-400 p-2 top-0 ">
+        <div className=" bg-gray-800 p-2 top-0 ">
           <nav className=" flex justify-between">
             <div className="flex flex-row">
               <NavLink to="/" className="px-2">
