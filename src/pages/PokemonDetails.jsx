@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import RotatingSprite from "../components/Sprite";
 import backgroundImage from "../assets/images/details_background.jpg";
+import circuitImage from "../assets/images/circuit.jpg";
 import pokeball from "../assets/images/pokeball.png";
 
 const PokemonDetails = () => {
@@ -126,7 +127,9 @@ const PokemonDetails = () => {
         overflow: "auto",
       }}
     >
-      <div className=" bg-gray-200 rounded-md w-2/3">
+      <div
+        className=" bg-gray-200 rounded-md w-2/3"
+      >
         <div
           className={`font-bold text-4xl ${bgcolor} px-5 py-2 border-x-2 border-y-4 border-gray-800 rounded-t-md`}
         >
@@ -148,7 +151,7 @@ const PokemonDetails = () => {
             </div>
             <div className="flex justify-center mt-7">
               <div
-                className={`${border} font-bold flex flex-col justify-start text-xl rounded-md border-4 px-8 py-2 mb-2`}
+                className={`${border} w-96 font-bold flex flex-col justify-start text-xl rounded-md border-4 px-8 py-2 mb-2`}
               >
                 Type
                 {data.types.map((type) => (
@@ -164,7 +167,7 @@ const PokemonDetails = () => {
             </div>
             <div className="flex justify-center">
               <div
-                className={`${border} font-bold flex flex-col justify-start text-xl rounded-md border-4 px-8 py-2 mb-2`}
+                className={`${border} w-96 font-bold flex flex-col justify-start text-xl rounded-md border-4 px-8 py-2 mb-2`}
               >
                 Ability
                 {data.abilities.map((ability) => (
@@ -181,7 +184,7 @@ const PokemonDetails = () => {
             <div>
               <div className="flex justify-center">
                 <table
-                  class={`table-auto ${border} font-bold flex flex-col text-xl rounded-md border-4 px-8 py-2 mb-2`}
+                  class={`table-auto ${border} w-96 border-separate border-spacing-x-4 font-bold flex flex-col text-xl rounded-md border-4 px-8 py-2 mb-2`}
                 >
                   <thead>
                     <tr>
@@ -230,7 +233,7 @@ const PokemonDetails = () => {
           <div className="basis-1/3">
             <div className="flex justify-center mt-7">
               <table
-                class={`table-auto ${border} font-bold flex flex-col text-xl rounded-md border-4 px-8 py-2 mb-2`}
+                class={`table-auto w-5/6 ${border} border-separate border-spacing-x-4 font-bold flex flex-col text-xl rounded-md border-4 px-4 py-2 mb-2`}
               >
                 <thead>
                   <tr>
@@ -239,18 +242,34 @@ const PokemonDetails = () => {
                 </thead>
                 <tbody className="text-gray-700 px-2 font-bold text-3xl">
                   {data.stats.map((stat, index) => (
-                    <tr key={index}>
-                      <td>
-                        {stat.stat.name.charAt(0).toUpperCase() +
-                          stat.stat.name.slice(1)}{" "}
-                        :
-                      </td>
-                      <td>{stat.base_stat}</td>
-                    </tr>
+                    <div className="w-full ">
+                      <tr key={index} className="flex">
+                        <td>
+                          {stat.stat.name.charAt(0).toUpperCase() +
+                            stat.stat.name.slice(1)}{" "}
+                          : {stat.base_stat}
+                        </td>
+                      </tr>
+                      <tr className=" flex">
+                        <td className="w-full bg-gray-600 rounded-full h-4">
+                          <div
+                            className={`${bgcolor} h-4 rounded-full`}
+                            style={{ width: stat.base_stat + "%" }}
+                          ></div>
+                        </td>
+                      </tr>
+                    </div>
                   ))}
                 </tbody>
               </table>
             </div>
+
+            {/* <div className="w-full bg-gray-600 rounded-full h-4">
+              <div
+                className={`${bgcolor} h-4 rounded-full`}
+                style={{ width: "45%" }}
+              ></div>
+            </div> */}
           </div>
         </div>
       </div>
