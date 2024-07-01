@@ -15,6 +15,7 @@ import {
 
 import DiscoverPageMain from "./pages/DiscoverPageMain";
 import Hero from "./pages/Hero";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route index element={<Hero />} />
       <Route path="search" element={<SearchPage />} />
       <Route path="pagination" element={<PaginationPage />} />
+      <Route path="login" element={<Login />} />
       <Route path="discover" element={<DiscoverPageMain />}>
         <Route index element={<DiscoverPage />} />
         <Route path="search" element={<SearchPage />} />
